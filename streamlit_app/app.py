@@ -19,18 +19,15 @@ st.set_page_config(
 # -----------------------------
 @st.cache_data
 def load_data():
-    data_path = os.path.join("..", "output", "clean_movies.csv")
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    data_path = os.path.join(BASE_DIR, "output", "clean_movies.csv")
     return pd.read_csv(data_path)
 
 df = load_data()
-
-
-# -----------------------------
-# Load Model
-# -----------------------------
 @st.cache_resource
 def load_model():
-    model_path = os.path.join("..", "models", "random_forest_model.pkl")
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    model_path = os.path.join(BASE_DIR, "models", "random_forest_model.pkl")
     return joblib.load(model_path)
 
 model = load_model()
